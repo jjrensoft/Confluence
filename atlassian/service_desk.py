@@ -84,12 +84,12 @@ class ServiceDesk(AtlassianRestAPI):
         return (response or {}).get("values")
 
     def create_customer_request(
-        self,
-        service_desk_id,
-        request_type_id,
-        values_dict,
-        raise_on_behalf_of=None,
-        request_participants=None,
+            self,
+            service_desk_id,
+            request_type_id,
+            values_dict,
+            raise_on_behalf_of=None,
+            request_participants=None,
     ):
         """
         Creating customer request
@@ -453,12 +453,12 @@ class ServiceDesk(AtlassianRestAPI):
 
     # Attachments actions
     def create_attachments(
-        self,
-        service_desk_id,
-        issue_id_or_key,
-        filenames,
-        public=True,
-        comment=None,
+            self,
+            service_desk_id,
+            issue_id_or_key,
+            filenames,
+            public=True,
+            comment=None,
     ):
         """
         Add attachment as a comment.
@@ -487,12 +487,12 @@ class ServiceDesk(AtlassianRestAPI):
         return self.add_attachments(issue_id_or_key, temp_attachment_ids, public, comment)
 
     def create_attachment(
-        self,
-        service_desk_id,
-        issue_id_or_key,
-        filename,
-        public=True,
-        comment=None,
+            self,
+            service_desk_id,
+            issue_id_or_key,
+            filename,
+            public=True,
+            comment=None,
     ):
         """
         Add attachment as a comment.
@@ -884,12 +884,12 @@ class ServiceDesk(AtlassianRestAPI):
         return self.put(url, data=data, headers=app_headers)
 
     def create_request_type(
-        self,
-        service_desk_id,
-        request_type_id,
-        request_name,
-        request_description,
-        request_help_text,
+            self,
+            service_desk_id,
+            request_type_id,
+            request_name,
+            request_description,
+            request_help_text,
     ):
         """
         Creating a request type

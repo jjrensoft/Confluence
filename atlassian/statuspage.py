@@ -837,7 +837,7 @@ class StatusPage(AtlassianRestAPI):
         return self.get(url)
 
     def page_create_access_group(
-        self, page_id, name, external_identifier, component_ids, metric_ids, page_access_user_ids
+            self, page_id, name, external_identifier, component_ids, metric_ids, page_access_user_ids
     ):
         """
         Create a page access group
@@ -882,7 +882,8 @@ class StatusPage(AtlassianRestAPI):
         )
 
     def page_replace_access_group(
-        self, page_id, page_access_group_id, name, external_identifier, component_ids, metric_ids, page_access_user_ids
+            self, page_id, page_access_group_id, name, external_identifier, component_ids, metric_ids,
+            page_access_user_ids
     ):
         """
         Update a page access group
@@ -1430,7 +1431,7 @@ class StatusPage(AtlassianRestAPI):
         return self.post(url, data={"subscribers": subscriber_ids, "type": subscriber_type})
 
     def page_unsubscribe_subscribers(
-        self, page_id, subscriber_ids, subscriber_type, skip_unsubscription_notification=False
+            self, page_id, subscriber_ids, subscriber_type, skip_unsubscription_notification=False
     ):
         """
         Unsubscribe a list of subscribers

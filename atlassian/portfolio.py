@@ -87,13 +87,13 @@ class Portfolio(AtlassianRestAPI):
         return self.post(url, data=data)
 
     def get_jql_issues(
-        self,
-        jql,
-        limit=500,
-        exclude_linked=True,
-        estimation_method="estimates",
-        epic_fetch_enabled=True,
-        load_story_points=True,
+            self,
+            jql,
+            limit=500,
+            exclude_linked=True,
+            estimation_method="estimates",
+            epic_fetch_enabled=True,
+            load_story_points=True,
     ):
         url = "rest/roadmap/1.0/system/import.json"
         data = {

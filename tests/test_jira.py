@@ -1,9 +1,11 @@
 # coding: utf8
 """Tests for Jira Modules"""
 from unittest import TestCase
+
+from requests import HTTPError
+
 from atlassian import jira
 from .mockup import mockup_server
-from requests import HTTPError
 
 
 class TestJira(TestCase):

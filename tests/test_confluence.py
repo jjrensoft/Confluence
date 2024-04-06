@@ -1,9 +1,7 @@
 # coding=utf-8
 import json
 import logging
-import os
-import tempfile
-import pytest
+
 from bs4 import BeautifulSoup
 
 from atlassian import Confluence
@@ -30,7 +28,7 @@ class TestConfluence():
                 credentials = json.load(json_file)
         except Exception as err:
             logging.ERROR("[{0}]: {1}".format(self.secret_file, err))
-            #self.fail("[{0}]: {1}".format(self.secret_file, err))
+            # self.fail("[{0}]: {1}".format(self.secret_file, err))
 
         confluence = Confluence(
             url=credentials["host"],
@@ -38,9 +36,9 @@ class TestConfluence():
             password=credentials["password"],
         )
 
-        page_content = confluence.get_page_by_id("193389165",expand="body.storage")
+        page_content = confluence.get_page_by_id("193389165", expand="body.storage")
         print(page_content["body"]["storage"]["value"])
-        html =page_content["body"]["storage"]["value"]
+        html = page_content["body"]["storage"]["value"]
         soup = BeautifulSoup(html, 'html.parser')
         outline = []
         # 提取标题
@@ -66,12 +64,12 @@ class TestConfluence():
                 for cell in cells:
                     row_content.append(cell.text)
                 outline.append('    ' + '|'.join(row_content))
-        msg=self.msg_content(outline)
-        result=Gptdemo(msg)
+        msg = self.msg_content(outline)
+        result = Gptdemo(msg)
         print(result)
 
-    def msg_content(self,content):
-        prompt=f'''你是一名测试专家, 请直接根据需求文档内容,为我整理测试点和测试用例,步骤如下:\
+    def msg_content(self, content):
+        prompt = f'''你是一名测试专家, 请直接根据需求文档内容,为我整理测试点和测试用例,步骤如下:\
         仔细阅读需求文档,理解其中的需求点\
         根据需求点划分,整理出测试点清单\
         针对每个测试点,列出相关需求点引用\
@@ -93,4 +91,3 @@ class TestConfluence():
         请根据需求文档内容{content},为我返回测试点清单和对应的测试用例,谢谢!
         '''
         return prompt
-

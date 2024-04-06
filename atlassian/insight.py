@@ -1,8 +1,9 @@
 # coding=utf-8
 import logging
 
-from .rest_client import AtlassianRestAPI
 from deprecated import deprecated
+
+from .rest_client import AtlassianRestAPI
 
 log = logging.getLogger(__name__)
 
@@ -256,18 +257,18 @@ class Insight(AtlassianRestAPI):
     # IQL
     # Resource dedicated to finding objects based on the Insight Query Language (IQL)
     def iql(
-        self,
-        iql,
-        object_schema_id,
-        page=1,
-        order_by_attribute_id=None,
-        order_asc=True,
-        result_per_page=25,
-        include_attributes=True,
-        include_attributes_deep=1,
-        include_type_attributes=False,
-        include_extended_info=False,
-        extended=None,
+            self,
+            iql,
+            object_schema_id,
+            page=1,
+            order_by_attribute_id=None,
+            order_asc=True,
+            result_per_page=25,
+            include_attributes=True,
+            include_attributes_deep=1,
+            include_type_attributes=False,
+            include_extended_info=False,
+            extended=None,
     ):
         """
         Resource dedicated to finding objects based on the Insight Query Language (IQL)
@@ -311,12 +312,12 @@ class Insight(AtlassianRestAPI):
         return self.get(url)
 
     def update_object(
-        self,
-        object_id,
-        object_type_id,
-        attributes,
-        has_avatar=False,
-        avatar_uuid="",
+            self,
+            object_id,
+            object_type_id,
+            attributes,
+            has_avatar=False,
+            avatar_uuid="",
     ):
         """
         Update an existing object in Insight
@@ -407,17 +408,17 @@ class Insight(AtlassianRestAPI):
         return self.post(url, data=data)
 
     def create_object_navlist_iql(
-        self,
-        iql,
-        object_type_id,
-        results_per_page,
-        order_by_type_attr_id=None,
-        object_id=None,
-        object_schema_id=None,
-        include_attributes=None,
-        attributes_to_display=None,
-        page=1,
-        asc=0,
+            self,
+            iql,
+            object_type_id,
+            results_per_page,
+            order_by_type_attr_id=None,
+            object_id=None,
+            object_schema_id=None,
+            include_attributes=None,
+            attributes_to_display=None,
+            page=1,
+            asc=0,
     ):
         """
         A filter object that is used to find a paginated result set based on an object type and an IQL query
@@ -548,15 +549,15 @@ class Insight(AtlassianRestAPI):
         )
 
     def get_object_type_attributes(
-        self,
-        type_id,
-        only_value_editable=None,
-        order_by_name=None,
-        query=None,
-        include_values_exist=None,
-        exclude_parent_attributes=None,
-        include_children=None,
-        order_by_required=None,
+            self,
+            type_id,
+            only_value_editable=None,
+            order_by_name=None,
+            query=None,
+            include_values_exist=None,
+            exclude_parent_attributes=None,
+            include_children=None,
+            order_by_required=None,
     ):
         """
         Find all attributes for this object type

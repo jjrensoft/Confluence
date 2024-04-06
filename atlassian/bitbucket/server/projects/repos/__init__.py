@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from requests import HTTPError
+
 from ...base import BitbucketServerBase
 from ...common.permissions import Groups, Users
 
@@ -285,14 +286,14 @@ class Repository(BitbucketServerBase):
         return self.__users
 
     def download_archive(
-        self,
-        dest_fd,
-        at=None,
-        filename=None,
-        format=None,
-        path=None,
-        prefix=None,
-        chunk_size=128,
+            self,
+            dest_fd,
+            at=None,
+            filename=None,
+            format=None,
+            path=None,
+            prefix=None,
+            chunk_size=128,
     ):
         """
         Downloads a repository archive.

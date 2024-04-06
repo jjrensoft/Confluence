@@ -33,9 +33,9 @@ class GroupPermissions(BitbucketCloudBase):
         if q is not None:
             params["q"] = q
         for group_permission in self._get_paged(
-            None,
-            trailing=True,
-            params=params,
+                None,
+                trailing=True,
+                params=params,
         ):
             yield self.__get_object(group_permission)
 

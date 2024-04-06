@@ -1,9 +1,10 @@
 # coding=utf-8
 
 import logging
-from ..base import BitbucketBase
 
 from requests import HTTPError
+
+from ..base import BitbucketBase
 
 log = logging.getLogger(__name__)
 
@@ -38,14 +39,14 @@ class BitbucketCloudBase(BitbucketBase):
         return links[link]["href"]
 
     def _get_paged(
-        self,
-        url,
-        params=None,
-        data=None,
-        flags=None,
-        trailing=None,
-        absolute=False,
-        paging_workaround=False,
+            self,
+            url,
+            params=None,
+            data=None,
+            flags=None,
+            trailing=None,
+            absolute=False,
+            paging_workaround=False,
     ):
         """
         Used to get the paged data

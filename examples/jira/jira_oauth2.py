@@ -6,10 +6,11 @@
     the available projects are returned.
 """
 
-from requests_oauthlib import OAuth2Session
-from atlassian.jira import Jira
-from flask import Flask, request, redirect, session
 import requests
+from flask import Flask, request, redirect, session
+from requests_oauthlib import OAuth2Session
+
+from atlassian.jira import Jira
 
 app = Flask(__name__)
 app.secret_key = ""

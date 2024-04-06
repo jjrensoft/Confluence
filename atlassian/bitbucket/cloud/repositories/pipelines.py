@@ -1,8 +1,8 @@
 # coding=utf-8
 
-from .pullRequests import PullRequest
 from requests import HTTPError
 
+from .pullRequests import PullRequest
 from ..base import BitbucketCloudBase
 
 
@@ -80,10 +80,10 @@ class Pipelines(BitbucketCloudBase):
         if q is not None:
             params["q"] = q
         for pipeline in self._get_paged(
-            None,
-            trailing=True,
-            paging_workaround=True,
-            params=params,
+                None,
+                trailing=True,
+                paging_workaround=True,
+                params=params,
         ):
             yield self.__get_object(pipeline)
 

@@ -4,8 +4,8 @@ import logging
 from deprecated import deprecated
 from requests import HTTPError
 
-from .base import BitbucketBase
 from atlassian.bitbucket.cloud import Cloud
+from .base import BitbucketBase
 
 log = logging.getLogger(__name__)
 
@@ -909,11 +909,11 @@ class Bitbucket(BitbucketBase):
         return self.post(url, data=body)
 
     def fork_repository_new_project(
-        self,
-        project_key,
-        repository_slug,
-        new_project_key,
-        new_repository_slug,
+            self,
+            project_key,
+            repository_slug,
+            new_project_key,
+            new_repository_slug,
     ):
         """
         Forks a repository to a separate project.
@@ -1165,16 +1165,16 @@ class Bitbucket(BitbucketBase):
         return "{}/branches".format(self._url_repo(project_key, repository_slug, api_root=api_root))
 
     def get_branches(
-        self,
-        project_key,
-        repository_slug,
-        base=None,
-        filter=None,
-        start=0,
-        limit=None,
-        details=True,
-        order_by="MODIFICATION",
-        boost_matches=False,
+            self,
+            project_key,
+            repository_slug,
+            base=None,
+            filter=None,
+            start=0,
+            limit=None,
+            details=True,
+            order_by="MODIFICATION",
+            boost_matches=False,
     ):
         """
         Retrieve the branches matching the supplied filterText param.
@@ -1281,13 +1281,13 @@ class Bitbucket(BitbucketBase):
             return "{}/tags".format(self._url_repo(project_key, repository_slug, api_root=api_root))
 
     def get_tags(
-        self,
-        project_key,
-        repository_slug,
-        filter="",
-        limit=1000,
-        order_by=None,
-        start=0,
+            self,
+            project_key,
+            repository_slug,
+            filter="",
+            limit=1000,
+            order_by=None,
+            start=0,
     ):
         """
         Retrieve the tags matching the supplied filterText param.
@@ -1330,12 +1330,12 @@ class Bitbucket(BitbucketBase):
         return self._get_paged(url)
 
     def set_tag(
-        self,
-        project_key,
-        repository_slug,
-        tag_name,
-        commit_revision,
-        description=None,
+            self,
+            project_key,
+            repository_slug,
+            tag_name,
+            commit_revision,
+            description=None,
     ):
         """
         Creates a tag using the information provided in the {@link RestCreateTagRequest request}
@@ -1376,12 +1376,12 @@ class Bitbucket(BitbucketBase):
         return "{}/settings/hooks".format(self._url_repo(project_key, repository_slug))
 
     def all_repo_hook_settings(
-        self,
-        project_key,
-        repository_slug,
-        start=0,
-        limit=None,
-        filter_type=None,
+            self,
+            project_key,
+            repository_slug,
+            start=0,
+            limit=None,
+            filter_type=None,
     ):
         """
         Get all repository hooks for a given repo
@@ -1450,11 +1450,11 @@ class Bitbucket(BitbucketBase):
         return "{}/webhooks".format(self._url_repo(project_key, repository_slug))
 
     def get_webhooks(
-        self,
-        project_key,
-        repository_slug,
-        event=None,
-        statistics=False,
+            self,
+            project_key,
+            repository_slug,
+            event=None,
+            statistics=False,
     ):
         """
         Get webhooks
@@ -1473,14 +1473,14 @@ class Bitbucket(BitbucketBase):
         return self._get_paged(url, params=params)
 
     def create_webhook(
-        self,
-        project_key,
-        repository_slug,
-        name,
-        events,
-        webhook_url,
-        active,
-        secret=None,
+            self,
+            project_key,
+            repository_slug,
+            name,
+            events,
+            webhook_url,
+            active,
+            secret=None,
     ):
         """Creates a webhook using the information provided in the request.
 
@@ -1576,14 +1576,14 @@ class Bitbucket(BitbucketBase):
             return "{}/pull-requests".format(self._url_repo(project_key, repository_slug))
 
     def get_pull_requests(
-        self,
-        project_key,
-        repository_slug,
-        state="OPEN",
-        order="newest",
-        limit=100,
-        start=0,
-        at=None,
+            self,
+            project_key,
+            repository_slug,
+            state="OPEN",
+            order="newest",
+            limit=100,
+            start=0,
+            at=None,
     ):
         """
         Get pull requests
@@ -1612,7 +1612,7 @@ class Bitbucket(BitbucketBase):
         return self._get_paged(url, params=params)
 
     def get_required_reviewers_for_pull_request(
-        self, source_project, source_repo, dest_project, dest_repo, source_branch, dest_branch
+            self, source_project, source_repo, dest_project, dest_repo, source_branch, dest_branch
     ):
         """
         Get required reviewers for PR creation
@@ -1643,17 +1643,17 @@ class Bitbucket(BitbucketBase):
         return self.get(url, params=params)
 
     def open_pull_request(
-        self,
-        source_project,
-        source_repo,
-        dest_project,
-        dest_repo,
-        source_branch,
-        destination_branch,
-        title,
-        description,
-        reviewers=None,
-        include_required_reviewers=False,
+            self,
+            source_project,
+            source_repo,
+            dest_project,
+            dest_repo,
+            source_branch,
+            destination_branch,
+            title,
+            description,
+            reviewers=None,
+            include_required_reviewers=False,
     ):
         """
         Create a new pull request between two branches.
@@ -1765,11 +1765,11 @@ class Bitbucket(BitbucketBase):
         return self.put(url, data=data)
 
     def delete_pull_request(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        pull_request_version,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            pull_request_version,
     ):
         """
         Delete a pull request.
@@ -1785,12 +1785,12 @@ class Bitbucket(BitbucketBase):
         return self.delete(url, data=data)
 
     def get_pull_requests_activities(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        start=0,
-        limit=None,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            start=0,
+            limit=None,
     ):
         """
         Get pull requests activities
@@ -1813,12 +1813,12 @@ class Bitbucket(BitbucketBase):
         return self._get_paged(url, params)
 
     def get_pull_requests_changes(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        start=0,
-        limit=None,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            start=0,
+            limit=None,
     ):
         """
         Get pull requests changes
@@ -1838,12 +1838,12 @@ class Bitbucket(BitbucketBase):
         return self._get_paged(url, params)
 
     def get_pull_requests_commits(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        start=0,
-        limit=None,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            start=0,
+            limit=None,
     ):
         """
         Get pull requests commits
@@ -1871,12 +1871,12 @@ class Bitbucket(BitbucketBase):
         )
 
     def get_pull_requests_participants(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        start=0,
-        limit=None,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            start=0,
+            limit=None,
     ):
         """
         Get all participants of a pull request
@@ -1896,14 +1896,14 @@ class Bitbucket(BitbucketBase):
         return self._get_paged(url, params)
 
     def get_dashboard_pull_requests(
-        self,
-        start=0,
-        limit=None,
-        closed_since=None,
-        role=None,
-        participant_status=None,
-        state=None,
-        order=None,
+            self,
+            start=0,
+            limit=None,
+            closed_since=None,
+            role=None,
+            participant_status=None,
+            state=None,
+            order=None,
     ):
         """
         Get all pull requests where the current authenticated user is
@@ -1988,12 +1988,12 @@ class Bitbucket(BitbucketBase):
         return url
 
     def add_pull_request_comment(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        text,
-        parent_id=None,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            text,
+            parent_id=None,
     ):
         """
         Add comment into pull request
@@ -2033,13 +2033,13 @@ class Bitbucket(BitbucketBase):
         return self.get(url)
 
     def update_pull_request_comment(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        comment_id,
-        comment,
-        comment_version,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            comment_id,
+            comment,
+            comment_version,
     ):
         """
         Update the text of a comment.
@@ -2055,12 +2055,12 @@ class Bitbucket(BitbucketBase):
 
     @deprecated(version="2.4.2", reason="Use delete_pull_request_comment()")
     def delete_pull_reques_comment(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        comment_id,
-        comment_version,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            comment_id,
+            comment_version,
     ):
         """
         Deprecated name since 2.4.2. Let's use the get_pull_request()
@@ -2074,12 +2074,12 @@ class Bitbucket(BitbucketBase):
         )
 
     def delete_pull_request_comment(
-        self,
-        project_key,
-        repository_slug,
-        pull_request_id,
-        comment_id,
-        comment_version,
+            self,
+            project_key,
+            repository_slug,
+            pull_request_id,
+            comment_id,
+            comment_version,
     ):
         """
         Delete a comment.
@@ -2286,20 +2286,20 @@ class Bitbucket(BitbucketBase):
         )
 
     def get_commits(
-        self,
-        project_key,
-        repository_slug,
-        hash_oldest=None,
-        hash_newest=None,
-        follow_renames=False,
-        ignore_missing=False,
-        merges="include",
-        with_counts=False,
-        avatar_size=None,
-        avatar_scheme=None,
-        limit=None,
-        until=None,
-        since=None,
+            self,
+            project_key,
+            repository_slug,
+            hash_oldest=None,
+            hash_newest=None,
+            follow_renames=False,
+            ignore_missing=False,
+            merges="include",
+            with_counts=False,
+            avatar_size=None,
+            avatar_scheme=None,
+            limit=None,
+            until=None,
+            since=None,
     ):
         """
         Get commit list from repo
@@ -2373,12 +2373,12 @@ class Bitbucket(BitbucketBase):
         )
 
     def _url_commit(
-        self,
-        project_key,
-        repository_slug,
-        commit_id,
-        api_root=None,
-        api_version=None,
+            self,
+            project_key,
+            repository_slug,
+            commit_id,
+            api_root=None,
+            api_version=None,
     ):
         return "{}/{}".format(
             self._url_commits(
@@ -2419,13 +2419,13 @@ class Bitbucket(BitbucketBase):
         return (self.get(url) or {}).get("values")
 
     def get_changelog(
-        self,
-        project_key,
-        repository_slug,
-        ref_from,
-        ref_to,
-        start=0,
-        limit=None,
+            self,
+            project_key,
+            repository_slug,
+            ref_from,
+            ref_to,
+            start=0,
+            limit=None,
     ):
         """
         Get change log between 2 refs
@@ -2512,13 +2512,13 @@ class Bitbucket(BitbucketBase):
         return self.delete(url)
 
     def create_code_insights_report(
-        self,
-        project_key,
-        repository_slug,
-        commit_id,
-        report_key,
-        report_title,
-        **report_params
+            self,
+            project_key,
+            repository_slug,
+            commit_id,
+            report_key,
+            report_title,
+            **report_params
     ):  # fmt: skip
         """
         Create a new insight report, or replace the existing one
@@ -2540,13 +2540,13 @@ class Bitbucket(BitbucketBase):
         return self.put(url, data=data)
 
     def get_file_list(
-        self,
-        project_key,
-        repository_slug,
-        sub_folder=None,
-        query=None,
-        start=0,
-        limit=None,
+            self,
+            project_key,
+            repository_slug,
+            sub_folder=None,
+            query=None,
+            start=0,
+            limit=None,
     ):
         """
         Retrieve a page of files from particular directory of a repository.
@@ -2612,12 +2612,12 @@ class Bitbucket(BitbucketBase):
         return "{}/restrictions/{}".format(base, "" if permission_id is None else str(permission_id))
 
     def get_branches_permissions(
-        self,
-        project_key,
-        permission_id,
-        repository_slug=None,
-        start=0,
-        limit=25,
+            self,
+            project_key,
+            permission_id,
+            repository_slug=None,
+            start=0,
+            limit=25,
     ):
         """
         Get branches permissions from a given repo
@@ -2637,18 +2637,18 @@ class Bitbucket(BitbucketBase):
         return self.get(url, params=params)
 
     def set_branches_permissions(
-        self,
-        project_key,
-        multiple_permissions=False,
-        matcher_type=None,
-        matcher_value=None,
-        permission_type=None,
-        repository_slug=None,
-        except_users=None,
-        except_groups=None,
-        except_access_keys=None,
-        start=0,
-        limit=25,
+            self,
+            project_key,
+            multiple_permissions=False,
+            matcher_type=None,
+            matcher_value=None,
+            permission_type=None,
+            repository_slug=None,
+            except_users=None,
+            except_groups=None,
+            except_access_keys=None,
+            start=0,
+            limit=25,
     ):
         """
         Create a restriction for the supplied branch or set of branches to be applied to the given repository.
@@ -2833,14 +2833,14 @@ class Bitbucket(BitbucketBase):
         return self.put(url, files=data, headers={"Accept": "application/json"})
 
     def update_file(
-        self,
-        project_key,
-        repository_slug,
-        content,
-        message,
-        branch,
-        filename,
-        source_commit_id,
+            self,
+            project_key,
+            repository_slug,
+            content,
+            message,
+            branch,
+            filename,
+            source_commit_id,
     ):
         """
         Update existing file for given branch.
@@ -3033,16 +3033,16 @@ class Bitbucket(BitbucketBase):
         return self.delete(url) or {}
 
     def download_repo_archive(
-        self,
-        project_key,
-        repository_slug,
-        dest_fd,
-        at=None,
-        filename=None,
-        format=None,
-        path=None,
-        prefix=None,
-        chunk_size=128,
+            self,
+            project_key,
+            repository_slug,
+            dest_fd,
+            at=None,
+            filename=None,
+            format=None,
+            path=None,
+            prefix=None,
+            chunk_size=128,
     ):
         """
         Downloads a repository archive.
@@ -3118,10 +3118,10 @@ class Bitbucket(BitbucketBase):
         """
         values = []
         for p in (
-            Cloud(self.url, **self._new_session_args)
-            .workspaces.get(workspace)
-            .repositories.get(repository_slug)
-            .pipelines.each(sort=sort_by)
+                Cloud(self.url, **self._new_session_args)
+                        .workspaces.get(workspace)
+                        .repositories.get(repository_slug)
+                        .pipelines.each(sort=sort_by)
         ):
             values.append(p.data)
             if len(values) == number:
@@ -3134,12 +3134,12 @@ class Bitbucket(BitbucketBase):
         reason="Use atlassian.bitbucket.cloud instead of atlassian.bitbucket",
     )
     def trigger_pipeline(
-        self,
-        workspace,
-        repository_slug,
-        branch="master",
-        revision=None,
-        name=None,
+            self,
+            workspace,
+            repository_slug,
+            branch="master",
+            revision=None,
+            name=None,
     ):
         """
         Trigger a new pipeline. The following options are possible (1 and 2
@@ -3211,11 +3211,11 @@ class Bitbucket(BitbucketBase):
         """
         values = []
         for s in (
-            Cloud(self.url, **self._new_session_args)
-            .workspaces.get(workspace)
-            .repositories.get(repository_slug)
-            .pipelines.get(uuid)
-            .steps()
+                Cloud(self.url, **self._new_session_args)
+                        .workspaces.get(workspace)
+                        .repositories.get(repository_slug)
+                        .pipelines.get(uuid)
+                        .steps()
         ):
             values.append(s.data)
 
@@ -3269,13 +3269,13 @@ class Bitbucket(BitbucketBase):
         reason="Use atlassian.bitbucket.cloud instead of atlassian.bitbucket",
     )
     def create_issue(
-        self,
-        workspace,
-        repository_slug,
-        title,
-        description="",
-        kind="bug",
-        priority="major",
+            self,
+            workspace,
+            repository_slug,
+            title,
+            description="",
+            kind="bug",
+            priority="major",
     ):
         """
         Create a new issue in the issue tracker of the given repository.
@@ -3318,10 +3318,10 @@ class Bitbucket(BitbucketBase):
         """
         values = []
         for p in (
-            Cloud(self.url, **self._new_session_args)
-            .workspaces.get(workspace)
-            .repositories.get(repository_slug)
-            .issues.each(q=query, sort=sort_by)
+                Cloud(self.url, **self._new_session_args)
+                        .workspaces.get(workspace)
+                        .repositories.get(repository_slug)
+                        .issues.each(q=query, sort=sort_by)
         ):
             values.append(p.data)
 
@@ -3382,16 +3382,16 @@ class Bitbucket(BitbucketBase):
         reason="Use atlassian.bitbucket.cloud instead of atlassian.bitbucket",
     )
     def add_branch_restriction(
-        self,
-        workspace,
-        repository_slug,
-        kind,
-        branch_match_kind="glob",
-        branch_pattern="*",
-        branch_type=None,
-        users=None,
-        groups=None,
-        value=None,
+            self,
+            workspace,
+            repository_slug,
+            kind,
+            branch_match_kind="glob",
+            branch_pattern="*",
+            branch_type=None,
+            users=None,
+            groups=None,
+            value=None,
     ):
         """
         Add a new branch restriction.
@@ -3440,10 +3440,10 @@ class Bitbucket(BitbucketBase):
         """
         values = []
         for p in (
-            Cloud(self.url, **self._new_session_args)
-            .workspaces.get(workspace)
-            .repositories.get(repository_slug)
-            .branch_restrictions.each(kind=kind, pattern=pattern)
+                Cloud(self.url, **self._new_session_args)
+                        .workspaces.get(workspace)
+                        .repositories.get(repository_slug)
+                        .branch_restrictions.each(kind=kind, pattern=pattern)
         ):
             values.append(p.data)
             if len(values) == number:
@@ -3516,10 +3516,10 @@ class Bitbucket(BitbucketBase):
         """
         values = []
         for p in (
-            Cloud(self.url, **self._new_session_args)
-            .workspaces.get(workspace)
-            .repositories.get(repository_slug)
-            .default_reviewers.each()
+                Cloud(self.url, **self._new_session_args)
+                        .workspaces.get(workspace)
+                        .repositories.get(repository_slug)
+                        .default_reviewers.each()
         ):
             values.append(p.data)
             if len(values) == number:
@@ -3541,11 +3541,11 @@ class Bitbucket(BitbucketBase):
         :return: True if present, False if not.
         """
         if (
-            Cloud(self.url, **self._new_session_args)
-            .workspaces.get(workspace)
-            .repositories.get(repository_slug)
-            .default_reviewers.get(user)
-            is None
+                Cloud(self.url, **self._new_session_args)
+                        .workspaces.get(workspace)
+                        .repositories.get(repository_slug)
+                        .default_reviewers.get(user)
+                is None
         ):
             return False
 

@@ -52,10 +52,10 @@ class RepositoryVariables(BitbucketCloudBase):
         if q is not None:
             params["q"] = q
         for pipeline_variable in self._get_paged(
-            None,
-            trailing=True,
-            paging_workaround=True,
-            params=params,
+                None,
+                trailing=True,
+                paging_workaround=True,
+                params=params,
         ):
             yield self.__get_object(pipeline_variable)
 

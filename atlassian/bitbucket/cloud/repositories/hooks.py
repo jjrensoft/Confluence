@@ -13,11 +13,11 @@ class Hooks(BitbucketCloudBase):
         return Hook(data, **self._new_session_args)
 
     def create(
-        self,
-        url,
-        description,
-        events,
-        active=True,
+            self,
+            url,
+            description,
+            events,
+            active=True,
     ):
         """
         Creates a new webhook for the current repository

@@ -45,28 +45,28 @@ class AtlassianRestAPI(object):
     response = None
 
     def __init__(
-        self,
-        url,
-        username=None,
-        password=None,
-        timeout=75,
-        api_root="rest/api",
-        api_version="latest",
-        verify_ssl=True,
-        session=None,
-        oauth=None,
-        oauth2=None,
-        cookies=None,
-        advanced_mode=None,
-        kerberos=None,
-        cloud=False,
-        proxies=None,
-        token=None,
-        cert=None,
-        backoff_and_retry=False,
-        retry_status_codes=[413, 429, 503],
-        max_backoff_seconds=1800,
-        max_backoff_retries=1000,
+            self,
+            url,
+            username=None,
+            password=None,
+            timeout=75,
+            api_root="rest/api",
+            api_version="latest",
+            verify_ssl=True,
+            session=None,
+            oauth=None,
+            oauth2=None,
+            cookies=None,
+            advanced_mode=None,
+            kerberos=None,
+            cloud=False,
+            proxies=None,
+            token=None,
+            cert=None,
+            backoff_and_retry=False,
+            retry_status_codes=[413, 429, 503],
+            max_backoff_seconds=1800,
+            max_backoff_retries=1000,
     ):
         """
         init function for the AtlassianRestAPI object.
@@ -240,18 +240,18 @@ class AtlassianRestAPI(object):
         return self._session.close()
 
     def request(
-        self,
-        method="GET",
-        path="/",
-        data=None,
-        json=None,
-        flags=None,
-        params=None,
-        headers=None,
-        files=None,
-        trailing=None,
-        absolute=False,
-        advanced_mode=False,
+            self,
+            method="GET",
+            path="/",
+            data=None,
+            json=None,
+            flags=None,
+            params=None,
+            headers=None,
+            files=None,
+            trailing=None,
+            absolute=False,
+            advanced_mode=False,
     ):
         """
 
@@ -313,16 +313,16 @@ class AtlassianRestAPI(object):
         return response
 
     def get(
-        self,
-        path,
-        data=None,
-        flags=None,
-        params=None,
-        headers=None,
-        not_json_response=None,
-        trailing=None,
-        absolute=False,
-        advanced_mode=False,
+            self,
+            path,
+            data=None,
+            flags=None,
+            params=None,
+            headers=None,
+            not_json_response=None,
+            trailing=None,
+            absolute=False,
+            advanced_mode=False,
     ):
         """
         Get request based on the python-requests module. You can override headers, and also, get not json response
@@ -362,16 +362,16 @@ class AtlassianRestAPI(object):
                 return response.text
 
     def post(
-        self,
-        path,
-        data=None,
-        json=None,
-        headers=None,
-        files=None,
-        params=None,
-        trailing=None,
-        absolute=False,
-        advanced_mode=False,
+            self,
+            path,
+            data=None,
+            json=None,
+            headers=None,
+            files=None,
+            params=None,
+            trailing=None,
+            absolute=False,
+            advanced_mode=False,
     ):
         """
         :param path:
@@ -402,15 +402,15 @@ class AtlassianRestAPI(object):
         return self._response_handler(response)
 
     def put(
-        self,
-        path,
-        data=None,
-        headers=None,
-        files=None,
-        trailing=None,
-        params=None,
-        absolute=False,
-        advanced_mode=False,
+            self,
+            path,
+            data=None,
+            headers=None,
+            files=None,
+            trailing=None,
+            params=None,
+            absolute=False,
+            advanced_mode=False,
     ):
         """
         :param path: Path of request
@@ -444,15 +444,15 @@ class AtlassianRestAPI(object):
     """
 
     def patch(
-        self,
-        path,
-        data=None,
-        headers=None,
-        files=None,
-        trailing=None,
-        params=None,
-        absolute=False,
-        advanced_mode=False,
+            self,
+            path,
+            data=None,
+            headers=None,
+            files=None,
+            trailing=None,
+            params=None,
+            absolute=False,
+            advanced_mode=False,
     ):
         """
         :param path: Path of request
@@ -481,14 +481,14 @@ class AtlassianRestAPI(object):
         return self._response_handler(response)
 
     def delete(
-        self,
-        path,
-        data=None,
-        headers=None,
-        params=None,
-        trailing=None,
-        absolute=False,
-        advanced_mode=False,
+            self,
+            path,
+            data=None,
+            headers=None,
+            params=None,
+            trailing=None,
+            absolute=False,
+            advanced_mode=False,
     ):
         """
         Deletes resources at given paths.

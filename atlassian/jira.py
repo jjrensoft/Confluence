@@ -1,8 +1,9 @@
 # coding=utf-8
 import logging
-import re
 import os
+import re
 from warnings import warn
+
 from deprecated import deprecated
 from requests import HTTPError
 
@@ -25,13 +26,13 @@ class Jira(AtlassianRestAPI):
         super(Jira, self).__init__(url, *args, **kwargs)
 
     def _get_paged(
-        self,
-        url,
-        params=None,
-        data=None,
-        flags=None,
-        trailing=None,
-        absolute=False,
+            self,
+            url,
+            params=None,
+            data=None,
+            flags=None,
+            trailing=None,
+            absolute=False,
     ):
         """
         Used to get the paged data
@@ -81,12 +82,12 @@ class Jira(AtlassianRestAPI):
         return
 
     def get_permissions(
-        self,
-        permissions,
-        project_id=None,
-        project_key=None,
-        issue_id=None,
-        issue_key=None,
+            self,
+            permissions,
+            project_id=None,
+            project_key=None,
+            issue_id=None,
+            issue_key=None,
     ):
         """
         Returns a list of permissions indicating which permissions the user has. Details of the user's permissions can
@@ -335,12 +336,12 @@ class Jira(AtlassianRestAPI):
     """
 
     def get_audit_records(
-        self,
-        offset=None,
-        limit=None,
-        filter=None,
-        from_date=None,
-        to_date=None,
+            self,
+            offset=None,
+            limit=None,
+            filter=None,
+            from_date=None,
+            to_date=None,
     ):
         """
         Returns auditing records filtered using provided parameters
@@ -860,15 +861,15 @@ class Jira(AtlassianRestAPI):
         return self.get(url)
 
     def add_filter_share_permission(
-        self,
-        filter_id,
-        type,
-        project_id=None,
-        project_role_id=None,
-        groupname=None,
-        user_key=None,
-        view=None,
-        edit=None,
+            self,
+            filter_id,
+            type,
+            project_id=None,
+            project_role_id=None,
+            groupname=None,
+            user_key=None,
+            view=None,
+            edit=None,
     ):
         """
         Adds share permission for a filter. See the documentation of the sharePermissions.
@@ -1040,7 +1041,7 @@ class Jira(AtlassianRestAPI):
         return self.delete(url, params=params)
 
     def get_users_with_browse_permission_to_a_project(
-        self, username, issue_key=None, project_key=None, start=0, limit=100
+            self, username, issue_key=None, project_key=None, start=0, limit=100
     ):
         """
         Returns a list of active users that match the search string. This resource cannot be accessed anonymously
@@ -1735,15 +1736,15 @@ class Jira(AtlassianRestAPI):
         return tree
 
     def create_or_update_issue_remote_links(
-        self,
-        issue_key,
-        link_url,
-        title,
-        global_id=None,
-        relationship=None,
-        icon_url=None,
-        icon_title=None,
-        status_resolved=False,
+            self,
+            issue_key,
+            link_url,
+            title,
+            global_id=None,
+            relationship=None,
+            icon_url=None,
+            icon_title=None,
+            status_resolved=False,
     ):
         """
         Add Remote Link to Issue, update url if global_id is passed
@@ -2154,11 +2155,11 @@ class Jira(AtlassianRestAPI):
         )
 
     def user_set_property(
-        self,
-        username=None,
-        account_id=None,
-        key_property=None,
-        value_property=None,
+            self,
+            username=None,
+            account_id=None,
+            key_property=None,
+            value_property=None,
     ):
         """
         Set property for user
@@ -2228,10 +2229,10 @@ class Jira(AtlassianRestAPI):
         return self.user_deactivate(username)
 
     def user_disable_throw_rest_endpoint(
-        self,
-        username,
-        url="rest/scriptrunner/latest/custom/disableUser",
-        param="userName",
+            self,
+            username,
+            url="rest/scriptrunner/latest/custom/disableUser",
+            param="userName",
     ):
         """The disable method throw own rest endpoint"""
         url = "{}?{}={}".format(url, param, username)
@@ -2265,9 +2266,9 @@ class Jira(AtlassianRestAPI):
         return self.delete("rest/auth/1/websudo")
 
     def users_get_all(
-        self,
-        start=0,
-        limit=50,
+            self,
+            start=0,
+            limit=50,
     ):
         """
         :param start:
@@ -2282,15 +2283,15 @@ class Jira(AtlassianRestAPI):
         return self.get(url, params=params)
 
     def user_find_by_user_string(
-        self,
-        username=None,
-        query=None,
-        account_id=None,
-        property_key=None,
-        start=0,
-        limit=50,
-        include_inactive_users=False,
-        include_active_users=True,
+            self,
+            username=None,
+            query=None,
+            account_id=None,
+            property_key=None,
+            start=0,
+            limit=50,
+            include_inactive_users=False,
+            include_active_users=True,
     ):
         """
         Fuzzy search using display name, emailAddress or property, or an exact search for accountId or username
@@ -2521,14 +2522,14 @@ class Jira(AtlassianRestAPI):
         return self.get(url, params=params)
 
     def get_project_versions_paginated(
-        self,
-        key,
-        start=None,
-        limit=None,
-        order_by=None,
-        expand=None,
-        query=None,
-        status=None,
+            self,
+            key,
+            start=None,
+            limit=None,
+            order_by=None,
+            expand=None,
+            query=None,
+            status=None,
     ):
         """
         Returns all versions for the specified project. Results are paginated.
@@ -2575,12 +2576,12 @@ class Jira(AtlassianRestAPI):
         return self.get(url)
 
     def add_version(
-        self,
-        project_key,
-        project_id,
-        version,
-        is_archived=False,
-        is_released=False,
+            self,
+            project_key,
+            project_id,
+            version,
+            is_archived=False,
+            is_released=False,
     ):
         """
         Add missing version to project
@@ -2618,14 +2619,14 @@ class Jira(AtlassianRestAPI):
         return self.delete("rest/api/2/version/{}".format(version), data=payload)
 
     def update_version(
-        self,
-        version,
-        name=None,
-        description=None,
-        is_archived=None,
-        is_released=None,
-        start_date=None,
-        release_date=None,
+            self,
+            version,
+            name=None,
+            description=None,
+            is_archived=None,
+            is_released=None,
+            start_date=None,
+            release_date=None,
     ):
         """
         Update a project version
@@ -3326,13 +3327,13 @@ class Jira(AtlassianRestAPI):
     """
 
     def jql(
-        self,
-        jql,
-        fields="*all",
-        start=0,
-        limit=None,
-        expand=None,
-        validate_query=None,
+            self,
+            jql,
+            fields="*all",
+            start=0,
+            limit=None,
+            expand=None,
+            validate_query=None,
     ):
         """
         Get issues from jql search result with all related fields
@@ -3364,13 +3365,13 @@ class Jira(AtlassianRestAPI):
         return self.get(url, params=params)
 
     def jql_get_list_of_tickets(
-        self,
-        jql,
-        fields="*all",
-        start=0,
-        limit=None,
-        expand=None,
-        validate_query=None,
+            self,
+            jql,
+            fields="*all",
+            start=0,
+            limit=None,
+            expand=None,
+            validate_query=None,
     ):
         """
         Get issues from jql search result with all related fields
@@ -3940,11 +3941,11 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
     """
 
     def reindex(
-        self,
-        comments=True,
-        change_history=True,
-        worklogs=True,
-        indexing_type="BACKGROUND_PREFERRED",
+            self,
+            comments=True,
+            change_history=True,
+            worklogs=True,
+            indexing_type="BACKGROUND_PREFERRED",
     ):
         """
         Reindex the Jira instance
@@ -4062,7 +4063,7 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
         return self.get(url)
 
     def tempo_account_associate_with_jira_project(
-        self, account_id, project_id, default_account=False, link_type="MANUAL"
+            self, account_id, project_id, default_account=False, link_type="MANUAL"
     ):
         """
         The AccountLinkBean for associate Account with project
@@ -4325,13 +4326,13 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
         return self.get(url, params=params)
 
     def tempo_timesheets_get_worklogs(
-        self,
-        date_from=None,
-        date_to=None,
-        username=None,
-        project_key=None,
-        account_key=None,
-        team_id=None,
+            self,
+            date_from=None,
+            date_to=None,
+            username=None,
+            project_key=None,
+            account_key=None,
+            team_id=None,
     ):
         """
 
@@ -4625,12 +4626,12 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
         return self.post(url, data=data)
 
     def get_all_agile_boards(
-        self,
-        board_name=None,
-        project_key=None,
-        board_type=None,
-        start=0,
-        limit=50,
+            self,
+            board_name=None,
+            project_key=None,
+            board_type=None,
+            start=0,
+            limit=50,
     ):
         """
         Returns all boards. This only includes boards that the user has permission to view.
@@ -4749,11 +4750,11 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
 
     # /rest/agile/1.0/board/{boardId}/epic
     def get_epics(
-        self,
-        board_id,
-        done=False,
-        start=0,
-        limit=50,
+            self,
+            board_id,
+            done=False,
+            start=0,
+            limit=50,
     ):
         """
         Returns all epics from the board, for the given board Id.
@@ -4778,7 +4779,7 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
         return self.get(url, params=params)
 
     def get_issues_for_epic(
-        self, board_id, epic_id, jql="", validate_query="", fields="*all", expand="", start=0, limit=50
+            self, board_id, epic_id, jql="", validate_query="", fields="*all", expand="", start=0, limit=50
     ):
         """
         Returns all issues that belong to an epic on the board, for the given epic Id and the board Id.
@@ -4822,14 +4823,14 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
         return self.get(url, params=params)
 
     def get_issues_without_epic(
-        self,
-        board_id,
-        jql="",
-        validate_query="",
-        fields="*all",
-        expand="",
-        start=0,
-        limit=50,
+            self,
+            board_id,
+            jql="",
+            validate_query="",
+            fields="*all",
+            expand="",
+            start=0,
+            limit=50,
     ):
         """
         Returns all issues that do not belong to any epic on a board, for a given board Id.
@@ -5010,7 +5011,7 @@ api-group-workflows/#api-rest-api-2-workflow-search-get)
         return self.get_all_sprints_from_board(board_id, state, start, limit)
 
     def get_all_issues_for_sprint_in_board(
-        self, board_id, sprint_id, jql="", validateQuery=True, fields="", expand="", start=0, limit=50
+            self, board_id, sprint_id, jql="", validateQuery=True, fields="", expand="", start=0, limit=50
     ):
         """
         Get all issues you have access to that belong to the sprint from the board.

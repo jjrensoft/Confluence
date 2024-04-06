@@ -3,9 +3,9 @@
 import copy
 import re
 import sys
-
 from datetime import datetime
 from pprint import PrettyPrinter
+
 from ..rest_client import AtlassianRestAPI
 
 RE_TIMEZONE = re.compile(r"(\d{2}):(\d{2})$")
@@ -38,13 +38,13 @@ class BitbucketBase(AtlassianRestAPI):
         return PrettyPrinter(indent=4).pformat(self.__data if self.__data else self)
 
     def _get_paged(
-        self,
-        url,
-        params=None,
-        data=None,
-        flags=None,
-        trailing=None,
-        absolute=False,
+            self,
+            url,
+            params=None,
+            data=None,
+            flags=None,
+            trailing=None,
+            absolute=False,
     ):
         """
         Used to get the paged data
@@ -111,7 +111,7 @@ class BitbucketBase(AtlassianRestAPI):
         """
         LAMBDA = lambda: 0  # noqa: E731
         if self.timeformat_lambda is None or (
-            isinstance(self.timeformat_lambda, type(LAMBDA)) and self.timeformat_lambda.__name__ == LAMBDA.__name__
+                isinstance(self.timeformat_lambda, type(LAMBDA)) and self.timeformat_lambda.__name__ == LAMBDA.__name__
         ):
             return True
         else:

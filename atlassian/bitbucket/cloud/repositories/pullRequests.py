@@ -1,11 +1,11 @@
 # coding=utf-8
 
-from ..base import BitbucketCloudBase
 from .diffstat import DiffStat
-from ...cloud.repositories.commits import Commit
+from ..base import BitbucketCloudBase
 from ..common.builds import Build
 from ..common.comments import Comment
 from ..common.users import User, Participant
+from ...cloud.repositories.commits import Commit
 
 
 class PullRequests(BitbucketCloudBase):
@@ -20,13 +20,13 @@ class PullRequests(BitbucketCloudBase):
         return PullRequest(data, **self._new_session_args)
 
     def create(
-        self,
-        title,
-        source_branch,
-        destination_branch=None,
-        description=None,
-        close_source_branch=None,
-        reviewers=None,
+            self,
+            title,
+            source_branch,
+            destination_branch=None,
+            description=None,
+            close_source_branch=None,
+            reviewers=None,
     ):
         """
         Creates a new pull requests for a given source branch

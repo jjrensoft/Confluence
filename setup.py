@@ -1,4 +1,5 @@
 import os
+
 from setuptools import find_packages
 from setuptools import setup
 
@@ -7,7 +8,6 @@ with open(os.path.join("atlassian", "VERSION")) as file:
 
 with open("README.rst") as file:
     long_description = file.read()
-
 
 setup(
     name="atlassian-python-api",

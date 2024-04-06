@@ -6,10 +6,11 @@
 
 # @File:gptdemo.py
 
+import re
+
 # @software：PyCharm
 # 设置 OpenAI API 访问 Token
 import requests
-import re
 
 # 定义全局变量保存对话上下文
 context = {}
@@ -49,7 +50,8 @@ def Gptdemo(msg: str) -> str:
     response_data = response.json()["data"]["message"]
 
     # 提取并更新新的上下文信息
-    new_context = response.json()["data"].get("context", {})  # 使用get方法获取上下文，如果没有则返回空字典.get("context", {})  # 使用get方法获取上下文，如果没有则返回空字典
+    new_context = response.json()["data"].get("context",
+                                              {})  # 使用get方法获取上下文，如果没有则返回空字典.get("context", {})  # 使用get方法获取上下文，如果没有则返回空字典
     if new_context:
         context = new_context
 

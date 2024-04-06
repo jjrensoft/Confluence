@@ -1,13 +1,15 @@
 # coding=utf-8
+import json
 import logging
 import os
-import time
-import json
 import re
-from requests import HTTPError
+import time
+
 import requests
-from deprecated import deprecated
 from bs4 import BeautifulSoup
+from deprecated import deprecated
+from requests import HTTPError
+
 from atlassian import utils
 from .errors import ApiError, ApiNotFoundError, ApiPermissionError, ApiValueError, ApiConflictError, ApiNotAcceptable
 from .rest_client import AtlassianRestAPI
@@ -48,13 +50,13 @@ class Confluence(AtlassianRestAPI):
         return {representation: {"value": body, "representation": representation}}
 
     def _get_paged(
-        self,
-        url,
-        params=None,
-        data=None,
-        flags=None,
-        trailing=None,
-        absolute=False,
+            self,
+            url,
+            params=None,
+            data=None,
+            flags=None,
+            trailing=None,
+            absolute=False,
     ):
         """
         Used to get the paged data
@@ -228,8 +230,8 @@ class Confluence(AtlassianRestAPI):
         parent_content_id = None
         try:
             parent_content_id = (self.get_page_by_id(page_id=page_id, expand="ancestors").get("ancestors") or {})[
-                -1
-            ].get("id") or None
+                                    -1
+                                ].get("id") or None
         except Exception as e:
             log.error(e)
         return parent_content_id
@@ -243,8 +245,8 @@ class Confluence(AtlassianRestAPI):
         parent_content_title = None
         try:
             parent_content_title = (self.get_page_by_id(page_id=page_id, expand="ancestors").get("ancestors") or {})[
-                -1
-            ].get("title") or None
+                                       -1
+                                   ].get("title") or None
         except Exception as e:
             log.error(e)
         return parent_content_title
@@ -460,14 +462,14 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def get_page_comments(
-        self,
-        content_id,
-        expand=None,
-        parent_version=None,
-        start=0,
-        limit=25,
-        location=None,
-        depth=None,
+            self,
+            content_id,
+            expand=None,
+            parent_version=None,
+            start=0,
+            limit=25,
+            location=None,
+            depth=None,
     ):
         """
 
@@ -557,13 +559,13 @@ class Confluence(AtlassianRestAPI):
         return response.get("results")
 
     def get_all_pages_from_space_raw(
-        self,
-        space,
-        start=0,
-        limit=50,
-        status=None,
-        expand=None,
-        content_type="page",
+            self,
+            space,
+            start=0,
+            limit=50,
+            status=None,
+            expand=None,
+            content_type="page",
     ):
         """
         Get all pages from space
@@ -610,13 +612,13 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def get_all_pages_from_space(
-        self,
-        space,
-        start=0,
-        limit=50,
-        status=None,
-        expand=None,
-        content_type="page",
+            self,
+            space,
+            start=0,
+            limit=50,
+            status=None,
+            expand=None,
+            content_type="page",
     ):
         """
         Get all pages from space
@@ -790,15 +792,15 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def create_page(
-        self,
-        space,
-        title,
-        body,
-        parent_id=None,
-        type="page",
-        representation="storage",
-        editor=None,
-        full_width=False,
+            self,
+            space,
+            title,
+            body,
+            parent_id=None,
+            type="page",
+            representation="storage",
+            editor=None,
+            full_width=False,
     ):
         """
         Create page from scratch
@@ -846,12 +848,12 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def move_page(
-        self,
-        space_key,
-        page_id,
-        target_id=None,
-        target_title=None,
-        position="append",
+            self,
+            space_key,
+            page_id,
+            target_id=None,
+            target_title=None,
+            position="append",
     ):
         """
         Move page method
@@ -873,14 +875,14 @@ class Confluence(AtlassianRestAPI):
         return self.post(url, params=params, headers=self.no_check_headers)
 
     def create_or_update_template(
-        self,
-        name,
-        body,
-        template_type="page",
-        template_id=None,
-        description=None,
-        labels=None,
-        space=None,
+            self,
+            name,
+            body,
+            template_type="page",
+            template_id=None,
+            description=None,
+            labels=None,
+            space=None,
     ):
         """
         Creates a new or updates an existing content template.
@@ -1139,12 +1141,12 @@ class Confluence(AtlassianRestAPI):
         return self.delete("rest/api/template/{}".format(template_id))
 
     def get_all_spaces(
-        self,
-        start=0,
-        limit=500,
-        expand=None,
-        space_type=None,
-        space_status=None,
+            self,
+            start=0,
+            limit=500,
+            expand=None,
+            space_type=None,
+            space_status=None,
     ):
         """
         Get all spaces with provided limit
@@ -1195,14 +1197,14 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def attach_content(
-        self,
-        content,
-        name,
-        content_type="application/binary",
-        page_id=None,
-        title=None,
-        space=None,
-        comment=None,
+            self,
+            content,
+            name,
+            content_type="application/binary",
+            page_id=None,
+            title=None,
+            space=None,
+            comment=None,
     ):
         """
         Attach (upload) a file to a page, if it exists it will update automatically the
@@ -1275,14 +1277,14 @@ class Confluence(AtlassianRestAPI):
             return None
 
     def attach_file(
-        self,
-        filename,
-        name=None,
-        content_type=None,
-        page_id=None,
-        title=None,
-        space=None,
-        comment=None,
+            self,
+            filename,
+            name=None,
+            content_type=None,
+            page_id=None,
+            title=None,
+            space=None,
+            comment=None,
     ):
         """
         Attach (upload) a file to a page, if it exists it will update automatically the
@@ -1422,13 +1424,13 @@ class Confluence(AtlassianRestAPI):
 
     # @todo prepare more attachments info
     def get_attachments_from_content(
-        self,
-        page_id,
-        start=0,
-        limit=50,
-        expand=None,
-        filename=None,
-        media_type=None,
+            self,
+            page_id,
+            start=0,
+            limit=50,
+            expand=None,
+            filename=None,
+            media_type=None,
     ):
         """
         Get attachments for page
@@ -1640,8 +1642,9 @@ class Confluence(AtlassianRestAPI):
 
         if self.advanced_mode:
             confluence_content = (
-                (self.get_page_by_id(page_id, expand="body.storage").json() or {}).get("body") or {}
-            ).get("storage") or {}
+                                         (self.get_page_by_id(page_id, expand="body.storage").json() or {}).get(
+                                             "body") or {}
+                                 ).get("storage") or {}
         else:
             confluence_content = ((self.get_page_by_id(page_id, expand="body.storage") or {}).get("body") or {}).get(
                 "storage"
@@ -1664,15 +1667,15 @@ class Confluence(AtlassianRestAPI):
             return False
 
     def update_existing_page(
-        self,
-        page_id,
-        title,
-        body,
-        type="page",
-        representation="storage",
-        minor_edit=False,
-        version_comment=None,
-        full_width=False,
+            self,
+            page_id,
+            title,
+            body,
+            type="page",
+            representation="storage",
+            minor_edit=False,
+            version_comment=None,
+            full_width=False,
     ):
         """Duplicate update_page. Left for the people who used it before. Use update_page instead"""
         return self.update_page(
@@ -1687,17 +1690,17 @@ class Confluence(AtlassianRestAPI):
         )
 
     def update_page(
-        self,
-        page_id,
-        title,
-        body=None,
-        parent_id=None,
-        type="page",
-        representation="storage",
-        minor_edit=False,
-        version_comment=None,
-        always_update=False,
-        full_width=False,
+            self,
+            page_id,
+            title,
+            body=None,
+            parent_id=None,
+            type="page",
+            representation="storage",
+            minor_edit=False,
+            version_comment=None,
+            always_update=False,
+            full_width=False,
     ):
         """
         Update page if already exist
@@ -1774,16 +1777,16 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def _insert_to_existing_page(
-        self,
-        page_id,
-        title,
-        insert_body,
-        parent_id=None,
-        type="page",
-        representation="storage",
-        minor_edit=False,
-        version_comment=None,
-        top_of_page=False,
+            self,
+            page_id,
+            title,
+            insert_body,
+            parent_id=None,
+            type="page",
+            representation="storage",
+            minor_edit=False,
+            version_comment=None,
+            top_of_page=False,
     ):
         """
         Insert body to a page if already exist
@@ -1846,14 +1849,14 @@ class Confluence(AtlassianRestAPI):
             return response
 
     def append_page(
-        self,
-        page_id,
-        title,
-        append_body,
-        parent_id=None,
-        type="page",
-        representation="storage",
-        minor_edit=False,
+            self,
+            page_id,
+            title,
+            append_body,
+            parent_id=None,
+            type="page",
+            representation="storage",
+            minor_edit=False,
     ):
         """
         Append body to page if already exist
@@ -1881,14 +1884,14 @@ class Confluence(AtlassianRestAPI):
         )
 
     def prepend_page(
-        self,
-        page_id,
-        title,
-        prepend_body,
-        parent_id=None,
-        type="page",
-        representation="storage",
-        minor_edit=False,
+            self,
+            page_id,
+            title,
+            prepend_body,
+            parent_id=None,
+            type="page",
+            representation="storage",
+            minor_edit=False,
     ):
         """
         Append body to page if already exist
@@ -1916,15 +1919,15 @@ class Confluence(AtlassianRestAPI):
         )
 
     def update_or_create(
-        self,
-        parent_id,
-        title,
-        body,
-        representation="storage",
-        minor_edit=False,
-        version_comment=None,
-        editor=None,
-        full_width=False,
+            self,
+            parent_id,
+            title,
+            body,
+            representation="storage",
+            minor_edit=False,
+            version_comment=None,
+            editor=None,
+            full_width=False,
     ):
         """
         Update page or create a page if it is not exists
@@ -2309,13 +2312,13 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def get_space_content(
-        self,
-        space_key,
-        depth="all",
-        start=0,
-        limit=500,
-        content_type=None,
-        expand="body.storage",
+            self,
+            space_key,
+            depth="all",
+            start=0,
+            limit=500,
+            content_type=None,
+            expand="body.storage",
     ):
         """
         Get space content.
@@ -2511,13 +2514,13 @@ class Confluence(AtlassianRestAPI):
         return response
 
     def cql(
-        self,
-        cql,
-        start=0,
-        limit=None,
-        expand=None,
-        include_archived_spaces=None,
-        excerpt=None,
+            self,
+            cql,
+            start=0,
+            limit=None,
+            expand=None,
+            include_archived_spaces=None,
+            excerpt=None,
     ):
         """
         Get results from cql search result with all related fields
@@ -2847,12 +2850,12 @@ class Confluence(AtlassianRestAPI):
             return None
 
     def audit(
-        self,
-        start_date=None,
-        end_date=None,
-        start=None,
-        limit=None,
-        search_string=None,
+            self,
+            start_date=None,
+            end_date=None,
+            start=None,
+            limit=None,
+            search_string=None,
     ):
         """
         Fetch a paginated list of AuditRecord instances dating back to a certain time
@@ -3008,12 +3011,12 @@ class Confluence(AtlassianRestAPI):
         return self.post(url, params=params, data=data)
 
     def add_space_permissions(
-        self,
-        space_key,
-        subject_type,
-        subject_id,
-        operation_key,
-        operation_target,
+            self,
+            space_key,
+            subject_type,
+            subject_id,
+            operation_key,
+            operation_target,
     ):
         """
         Add permissions to a space

@@ -3,7 +3,7 @@ import json
 import logging
 import os
 import tempfile
-import pytest
+
 from bs4 import BeautifulSoup
 
 from atlassian import Confluence
@@ -29,7 +29,7 @@ class TestConfluenceAttach():
                 credentials = json.load(json_file)
         except Exception as err:
             logging.ERROR("[{0}]: {1}".format(self.secret_file, err))
-            #self.fail("[{0}]: {1}".format(self.secret_file, err))
+            # self.fail("[{0}]: {1}".format(self.secret_file, err))
 
         confluence = Confluence(
             url=credentials["host"],
@@ -41,15 +41,14 @@ class TestConfluenceAttach():
         space = "~renjiajia"
         title = "atlassian-python-rest-api-wrapper"
 
-
         fd, filename = tempfile.mkstemp("w")
         os.write(fd, b"Hello World - Version 1")
 
         # upload a new file
-        #result = confluence.attach_file(filename, "", page_id=129009607,title=title, space=space, comment="upload from jiajia")
-        page_content = confluence.get_page_by_id("193389165",expand="body.storage")
+        # result = confluence.attach_file(filename, "", page_id=129009607,title=title, space=space, comment="upload from jiajia")
+        page_content = confluence.get_page_by_id("193389165", expand="body.storage")
         print(page_content["body"]["storage"]["value"])
-        html =page_content["body"]["storage"]["value"]
+        html = page_content["body"]["storage"]["value"]
         soup = BeautifulSoup(html, 'html.parser')
         outline = []
         # 提取标题
@@ -77,7 +76,6 @@ class TestConfluenceAttach():
                 outline.append('    ' + '|'.join(row_content))
 
         print(outline)
-
 
 
 '''
@@ -203,4 +201,3 @@ class TestConfluenceAttach():
         assert ("id" in result)
         assert not("statusCode" in result)
         '''
-

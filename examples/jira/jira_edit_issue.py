@@ -28,7 +28,6 @@ fields = {"assignee": [{"set": {"name": "bob"}}]}
 
 jira.edit_issue(issue_id_or_key="ABC-123", fields=fields)
 
-
 """ Setting the assignee without notification """
 
 fields = {"assignee": [{"set": {"name": "alice"}}]}

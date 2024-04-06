@@ -2,6 +2,7 @@
 import logging
 
 from requests.exceptions import HTTPError
+
 from .rest_client import AtlassianRestAPI
 
 log = logging.getLogger(__name__)
@@ -11,15 +12,15 @@ class Bamboo(AtlassianRestAPI):
     """Private methods"""
 
     def _get_generator(
-        self,
-        path,
-        elements_key="results",
-        element_key="result",
-        data=None,
-        flags=None,
-        params=None,
-        headers=None,
-        max_results=None,
+            self,
+            path,
+            elements_key="results",
+            element_key="result",
+            data=None,
+            flags=None,
+            params=None,
+            headers=None,
+            max_results=None,
     ):
         """
         Generic method to return a generator with the results returned from Bamboo. It is intended to work for
@@ -62,15 +63,15 @@ class Bamboo(AtlassianRestAPI):
             yield response
 
     def base_list_call(
-        self,
-        resource,
-        expand,
-        favourite,
-        clover_enabled,
-        max_results,
-        label=None,
-        start_index=0,
-        **kwargs
+            self,
+            resource,
+            expand,
+            favourite,
+            clover_enabled,
+            max_results,
+            label=None,
+            start_index=0,
+            **kwargs
     ):  # fmt: skip
         flags = []
         params = {"max-results": max_results}
@@ -98,11 +99,11 @@ class Bamboo(AtlassianRestAPI):
     """ Projects & Plans """
 
     def projects(
-        self,
-        expand=None,
-        favourite=False,
-        clover_enabled=False,
-        max_results=25,
+            self,
+            expand=None,
+            favourite=False,
+            clover_enabled=False,
+            max_results=25,
     ):
         return self.base_list_call(
             "project",
@@ -146,12 +147,12 @@ class Bamboo(AtlassianRestAPI):
         )
 
     def plans(
-        self,
-        expand=None,
-        favourite=False,
-        clover_enabled=False,
-        start_index=0,
-        max_results=25,
+            self,
+            expand=None,
+            favourite=False,
+            clover_enabled=False,
+            start_index=0,
+            max_results=25,
     ):
         return self.base_list_call(
             "plan",
@@ -249,12 +250,12 @@ class Bamboo(AtlassianRestAPI):
             params["start-index"] += results["max-result"]
 
     def plan_branches(
-        self,
-        plan_key,
-        expand=None,
-        favourite=False,
-        clover_enabled=False,
-        max_results=25,
+            self,
+            plan_key,
+            expand=None,
+            favourite=False,
+            clover_enabled=False,
+            max_results=25,
     ):
         """api/1.0/plan/{projectKey}-{buildKey}/branch"""
         resource = "plan/{}/branch".format(plan_key)
@@ -279,12 +280,12 @@ class Bamboo(AtlassianRestAPI):
         return self.get(self.resource_url(resource))
 
     def create_branch(
-        self,
-        plan_key,
-        branch_name,
-        vcs_branch=None,
-        enabled=False,
-        cleanup_enabled=False,
+            self,
+            plan_key,
+            branch_name,
+            vcs_branch=None,
+            enabled=False,
+            cleanup_enabled=False,
     ):
         """
         Method for creating branch for a specified plan.
@@ -328,19 +329,19 @@ class Bamboo(AtlassianRestAPI):
     """ Build results """
 
     def results(
-        self,
-        project_key=None,
-        plan_key=None,
-        job_key=None,
-        build_number=None,
-        expand=None,
-        favourite=False,
-        clover_enabled=False,
-        issue_key=None,
-        label=None,
-        start_index=0,
-        max_results=25,
-        include_all_states=False,
+            self,
+            project_key=None,
+            plan_key=None,
+            job_key=None,
+            build_number=None,
+            expand=None,
+            favourite=False,
+            clover_enabled=False,
+            issue_key=None,
+            label=None,
+            start_index=0,
+            max_results=25,
+            include_all_states=False,
     ):
         """
         Get results as generic method
@@ -387,15 +388,15 @@ class Bamboo(AtlassianRestAPI):
         )  # fmt: skip
 
     def latest_results(
-        self,
-        expand=None,
-        favourite=False,
-        clover_enabled=False,
-        label=None,
-        issue_key=None,
-        start_index=0,
-        max_results=25,
-        include_all_states=False,
+            self,
+            expand=None,
+            favourite=False,
+            clover_enabled=False,
+            label=None,
+            issue_key=None,
+            start_index=0,
+            max_results=25,
+            include_all_states=False,
     ):
         """
         Get the latest Results
@@ -421,16 +422,16 @@ class Bamboo(AtlassianRestAPI):
         )
 
     def project_latest_results(
-        self,
-        project_key,
-        expand=None,
-        favourite=False,
-        clover_enabled=False,
-        label=None,
-        issue_key=None,
-        start_index=0,
-        max_results=25,
-        include_all_states=False,
+            self,
+            project_key,
+            expand=None,
+            favourite=False,
+            clover_enabled=False,
+            label=None,
+            issue_key=None,
+            start_index=0,
+            max_results=25,
+            include_all_states=False,
     ):
         """
         Get the latest Project Results
@@ -458,17 +459,17 @@ class Bamboo(AtlassianRestAPI):
         )
 
     def plan_results(
-        self,
-        project_key,
-        plan_key,
-        expand=None,
-        favourite=False,
-        clover_enabled=False,
-        label=None,
-        issue_key=None,
-        start_index=0,
-        max_results=25,
-        include_all_states=False,
+            self,
+            project_key,
+            plan_key,
+            expand=None,
+            favourite=False,
+            clover_enabled=False,
+            label=None,
+            issue_key=None,
+            start_index=0,
+            max_results=25,
+            include_all_states=False,
     ):
         """
         Get Plan results
@@ -498,12 +499,12 @@ class Bamboo(AtlassianRestAPI):
         )
 
     def build_result(
-        self,
-        build_key,
-        expand=None,
-        include_all_states=False,
-        start=0,
-        max_results=25,
+            self,
+            build_key,
+            expand=None,
+            include_all_states=False,
+            start=0,
+            max_results=25,
     ):
         """
         Returns details of a specific build result
@@ -567,12 +568,12 @@ class Bamboo(AtlassianRestAPI):
         return self.post(custom_resource, params=params, headers=self.form_token_headers)
 
     def execute_build(
-        self,
-        plan_key,
-        stage=None,
-        execute_all_stages=True,
-        custom_revision=None,
-        **bamboo_variables
+            self,
+            plan_key,
+            stage=None,
+            execute_all_stages=True,
+            custom_revision=None,
+            **bamboo_variables
     ):  # fmt: skip
         """
         Fire build execution for specified plan.
@@ -610,12 +611,12 @@ class Bamboo(AtlassianRestAPI):
     """ Comments & Labels """
 
     def comments(
-        self,
-        project_key,
-        plan_key,
-        build_number,
-        start_index=0,
-        max_results=25,
+            self,
+            project_key,
+            plan_key,
+            build_number,
+            start_index=0,
+            max_results=25,
     ):
         resource = "result/{}-{}-{}/comment".format(project_key, plan_key, build_number)
         params = {"start-index": start_index, "max-results": max_results}
@@ -630,12 +631,12 @@ class Bamboo(AtlassianRestAPI):
         return self.post(self.resource_url(resource), data=comment_data)
 
     def labels(
-        self,
-        project_key,
-        plan_key,
-        build_number,
-        start_index=0,
-        max_results=25,
+            self,
+            project_key,
+            plan_key,
+            build_number,
+            start_index=0,
+            max_results=25,
     ):
         resource = "result/{}-{}-{}/label".format(project_key, plan_key, build_number)
         params = {"start-index": start_index, "max-results": max_results}
@@ -1116,17 +1117,17 @@ class Bamboo(AtlassianRestAPI):
         )
 
     def chart(
-        self,
-        report_key,
-        build_keys,
-        group_by_period,
-        date_filter=None,
-        date_from=None,
-        date_to=None,
-        width=None,
-        height=None,
-        start_index=9,
-        max_results=25,
+            self,
+            report_key,
+            build_keys,
+            group_by_period,
+            date_filter=None,
+            date_from=None,
+            date_to=None,
+            width=None,
+            height=None,
+            start_index=9,
+            max_results=25,
     ):
         params = {
             "reportKey": report_key,

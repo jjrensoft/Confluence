@@ -14,13 +14,13 @@ class Crowd(AtlassianRestAPI):
     not user credentials, in order to access Crowd APIs"""
 
     def __init__(
-        self,
-        url,
-        username,
-        password,
-        timeout=60,
-        api_root="rest",
-        api_version="latest",
+            self,
+            url,
+            username,
+            password,
+            timeout=60,
+            api_root="rest",
+            api_version="latest",
     ):
         super(Crowd, self).__init__(url, username, password, timeout, api_root, api_version)
 
@@ -77,14 +77,14 @@ class Crowd(AtlassianRestAPI):
         return self._user_change_status(username, True)
 
     def user_create(
-        self,
-        username,
-        active,
-        first_name,
-        last_name,
-        display_name,
-        email,
-        password,
+            self,
+            username,
+            active,
+            first_name,
+            last_name,
+            display_name,
+            email,
+            password,
     ):
         """
         Create new user method

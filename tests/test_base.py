@@ -1,7 +1,7 @@
 # coding: utf8
 import os
 
-from atlassian import  Confluence
+from atlassian import Confluence
 
 CONFLUENCE_URL = os.environ.get("BAMBOO_URL", "https://confluence.zhihuiya.com/")
 

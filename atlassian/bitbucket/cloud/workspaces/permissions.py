@@ -37,10 +37,10 @@ class Permissions(BitbucketCloudBase):
             params["q"] = q
         params["pagelen"] = pagelen
         for workspace_membership in self._get_paged(
-            None,
-            trailing=True,
-            paging_workaround=True,
-            params=params,
+                None,
+                trailing=True,
+                paging_workaround=True,
+                params=params,
         ):
             yield self.__get_object_workspace_membership(workspace_membership)
 
@@ -48,7 +48,7 @@ class Permissions(BitbucketCloudBase):
 
     def repositories(self, repo_slug="", pagelen=10):
         for permissions in self._get_paged(
-            "repositories/{}".format(repo_slug), trailing=True, params={"pagelen": pagelen}
+                "repositories/{}".format(repo_slug), trailing=True, params={"pagelen": pagelen}
         ):
             yield self.__get_object_repository_permission(permissions)
 

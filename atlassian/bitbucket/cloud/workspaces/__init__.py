@@ -1,11 +1,11 @@
 # coding=utf-8
 
 from requests import HTTPError
-from ..base import BitbucketCloudBase
 
 from .members import WorkspaceMembers
 from .permissions import Permissions
 from .projects import Projects
+from ..base import BitbucketCloudBase
 from ..repositories import WorkspaceRepositories
 
 

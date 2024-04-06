@@ -112,12 +112,12 @@ class Commit(BitbucketCloudBase):
             yield Build(build, **self._new_session_args)
 
     def add_build(
-        self,
-        key,
-        url=None,
-        description=None,
-        refname=None,
-        state=Build.STATE_INPROGRESS,
+            self,
+            key,
+            url=None,
+            description=None,
+            refname=None,
+            state=Build.STATE_INPROGRESS,
     ):
         """
         Add new build status to commit.

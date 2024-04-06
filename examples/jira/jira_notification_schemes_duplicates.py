@@ -49,9 +49,9 @@ def review():
         for j in range(len(names)):
             if names and i < j:
                 if compare_dicts(
-                    all_notification_schemes_dict[names[i]],
-                    all_notification_schemes_dict[names[j]],
-                    print_diffs=show_diffs,
+                        all_notification_schemes_dict[names[i]],
+                        all_notification_schemes_dict[names[j]],
+                        print_diffs=show_diffs,
                 ):
                     print("| same |", names[i], " | ", names[j], "|")
 

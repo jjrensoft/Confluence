@@ -2,6 +2,7 @@
 import json
 import os
 import unittest
+
 from requests import Response
 
 from atlassian import Confluence

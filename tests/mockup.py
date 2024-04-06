@@ -1,7 +1,6 @@
 # coding: utf8
 import json
 import os
-
 from unittest.mock import Mock
 
 from requests import Session, Response
@@ -19,7 +18,7 @@ def request_mockup(*args, **kwargs):
     url = kwargs["url"]
     if not url.startswith(SERVER + "/"):
         raise ValueError("URL [{}] does not start with [{}/].".format(url, SERVER))
-    parts = url[len(SERVER) + 1 :].split("?")
+    parts = url[len(SERVER) + 1:].split("?")
     url = parts[0]
     response_key = parts[1] if len(parts) > 1 else None
     if kwargs["data"] is not None:
