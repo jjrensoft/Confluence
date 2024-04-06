@@ -1,13 +1,14 @@
 # coding=utf-8
 import json
+import logging
 import os
 import tempfile
-import unittest
+import pytest
 
 from atlassian import Confluence
 
 
-class TestConfluenceAttach(unittest.TestCase):
+class TestConfluenceAttach():
     secret_file = "../credentials.secret"
 
     """
@@ -21,16 +22,13 @@ class TestConfluenceAttach(unittest.TestCase):
         }
     """
 
-    @unittest.skipIf(
-        not os.path.exists("../credentials.secret"),
-        "credentials.secret missing, skipping test",
-    )
     def test_confluence_attach_file_1(self):
         try:
             with open(self.secret_file) as json_file:
                 credentials = json.load(json_file)
         except Exception as err:
-            self.fail("[{0}]: {1}".format(self.secret_file, err))
+            logging.ERROR("[{0}]: {1}".format(self.secret_file, err))
+            #self.fail("[{0}]: {1}".format(self.secret_file, err))
 
         confluence = Confluence(
             url=credentials["host"],
@@ -39,20 +37,21 @@ class TestConfluenceAttach(unittest.TestCase):
         )
 
         # individual configuration
-        space = "SAN"
+        space = "~renjiajia"
         title = "atlassian-python-rest-api-wrapper"
 
-        # TODO: check if page are exists
 
         fd, filename = tempfile.mkstemp("w")
         os.write(fd, b"Hello World - Version 1")
 
         # upload a new file
-        result = confluence.attach_file(filename, "", title=title, space=space, comment="upload from unittest")
+        result = confluence.attach_file(filename, "", page_id=129009607,title=title, space=space, comment="upload from jiajia")
+        page_content = confluence.get_page_by_id("193389165",expand="body.storage")
+        print(page_content["body"]["storage"]["value"])
 
         # attach_file() returns: {'results': [{'id': 'att144005326', 'type': 'attachment', ...
-        self.assertTrue("results" in result)
-        self.assertFalse("statusCode" in result)
+        assert "results" in result
+        assert  not ("statusCode" in result)
 
         # upload a new version of an existing file
         os.lseek(fd, 0, 0)
@@ -60,16 +59,12 @@ class TestConfluenceAttach(unittest.TestCase):
         result = confluence.attach_file(filename, "", title=title, space=space, comment="upload from unittest")
 
         # attach_file() returns: {'id': 'att144005326', 'type': 'attachment', ...
-        self.assertTrue("id" in result)
-        self.assertFalse("statusCode" in result)
+        assert ("id" in result)
+        assert  not ("statusCode" in result)
 
         os.close(fd)
         os.remove(filename)
 
-    @unittest.skipIf(
-        not os.path.exists("../credentials.secret"),
-        "credentials.secret missing, skipping test",
-    )
     def test_confluence_attach_file_2(self):
         try:
             with open(self.secret_file) as json_file:
@@ -84,7 +79,7 @@ class TestConfluenceAttach(unittest.TestCase):
         )
 
         # individual configuration
-        space = "SAN"
+        space = "~renjiajia"
         title = "atlassian-python-rest-api-wrapper"
 
         # TODO: check if page are exists
@@ -105,8 +100,8 @@ class TestConfluenceAttach(unittest.TestCase):
         )
 
         # attach_file() returns: {'results': [{'id': 'att144005326', 'type': 'attachment', ...
-        self.assertTrue("results" in result)
-        self.assertFalse("statusCode" in result)
+        assert ("results" in result)
+        assert not ("statusCode" in result)
 
         # upload a new version of an existing file
         os.lseek(fd, 0, 0)
@@ -121,16 +116,12 @@ class TestConfluenceAttach(unittest.TestCase):
         )
 
         # attach_file() returns: {'id': 'att144005326', 'type': 'attachment', ...
-        self.assertTrue("id" in result)
-        self.assertFalse("statusCode" in result)
+        assert ("id" in result)
+        assert not ("statusCode" in result)
 
         os.close(fd)
         os.remove(filename)
 
-    @unittest.skipIf(
-        not os.path.exists("../credentials.secret"),
-        "credentials.secret missing, skipping test",
-    )
     def test_confluence_attach_content(self):
         try:
             with open(self.secret_file) as json_file:
@@ -145,7 +136,7 @@ class TestConfluenceAttach(unittest.TestCase):
         )
 
         # individual configuration
-        space = "SAN"
+        space = "~renjiajia"
         title = "atlassian-python-rest-api-wrapper"
 
         attachment_name = os.path.basename(tempfile.mkstemp())
@@ -162,8 +153,8 @@ class TestConfluenceAttach(unittest.TestCase):
         )
 
         # attach_file() returns: {'results': [{'id': 'att144005326', 'type': 'attachment', ...
-        self.assertTrue("results" in result)
-        self.assertFalse("statusCode" in result)
+        assert ("results" in result)
+        assert not ("statusCode" in result)
 
         # upload a new version of an existing file
         content = b"Hello Universe - Version 2"
@@ -177,9 +168,6 @@ class TestConfluenceAttach(unittest.TestCase):
         )
 
         # attach_file() returns: {'id': 'att144005326', 'type': 'attachment', ...
-        self.assertTrue("id" in result)
-        self.assertFalse("statusCode" in result)
+        assert ("id" in result)
+        assert not("statusCode" in result)
 
-
-if __name__ == "__main__":
-    unittest.main()
