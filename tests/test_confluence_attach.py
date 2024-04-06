@@ -4,6 +4,7 @@ import logging
 import os
 import tempfile
 import pytest
+from bs4 import BeautifulSoup
 
 from atlassian import Confluence
 
@@ -45,10 +46,41 @@ class TestConfluenceAttach():
         os.write(fd, b"Hello World - Version 1")
 
         # upload a new file
-        result = confluence.attach_file(filename, "", page_id=129009607,title=title, space=space, comment="upload from jiajia")
+        #result = confluence.attach_file(filename, "", page_id=129009607,title=title, space=space, comment="upload from jiajia")
         page_content = confluence.get_page_by_id("193389165",expand="body.storage")
         print(page_content["body"]["storage"]["value"])
+        html =page_content["body"]["storage"]["value"]
+        soup = BeautifulSoup(html, 'html.parser')
+        outline = []
+        # 提取标题
+        h2_tags = soup.find_all('h2')
+        for h2 in h2_tags:
+            title = h2.text
+            outline.append(title)
 
+        # 提取标题下面的段落
+        for h2 in h2_tags:
+            p_tags = h2.find_next_siblings('p')
+            for p in p_tags:
+                content = p.text
+                outline.append('  ' + content)
+
+        # 提取表格
+        table_tags = soup.find_all('table')
+        for table in table_tags:
+            rows = table.find_all('tr')
+            for row in rows:
+                cells = row.find_all('td')
+                row_content = []
+                for cell in cells:
+                    row_content.append(cell.text)
+                outline.append('    ' + '|'.join(row_content))
+
+        print(outline)
+
+
+
+'''
         # attach_file() returns: {'results': [{'id': 'att144005326', 'type': 'attachment', ...
         assert "results" in result
         assert  not ("statusCode" in result)
@@ -170,4 +202,5 @@ class TestConfluenceAttach():
         # attach_file() returns: {'id': 'att144005326', 'type': 'attachment', ...
         assert ("id" in result)
         assert not("statusCode" in result)
+        '''
 
